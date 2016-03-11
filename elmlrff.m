@@ -14,25 +14,30 @@ function [ net ] = elmlrff( net, x )
 %
 
 numLayers = numel(net.layers);
-net.layers{1}.f{1} = x;
-inputmaps = 1;
+[~,~,~,inputmaps] = size(x);% H-by-W-nImages-by-nChannel
+for i = 1:inputmaps
+    net.layers{1}.f{i} = x(:,:,:,i);
+end
 
 for l = 2:numLayers %  for each layer
     if strcmp(net.layers{l}.type, 'c')
-        for j = 1 : net.layers{l}.outputmaps   %  for each output map
+        K = net.layers{l}.outputmaps;
+        
+        for j = 1 : K   %  for each output map
             %  create temp output map
-            z = zeros(size(net.layers{l - 1}.f{1}) - [net.layers{l}.kernelsize - 1 net.layers{l}.kernelsize - 1 0]);
+%             z = zeros(size(net.layers{l - 1}.f{1}) - [net.layers{l}.kernelsize - 1, net.layers{l}.kernelsize - 1, 0]);
             for i = 1 : inputmaps   %  for each input map
                 %  convolve with corresponding kernel and add to temp output map
-                z = z + convn(net.layers{l - 1}.f{i}, net.layers{l}.a{i}{j}, 'valid'); % a: weigth  f: c
+                net.layers{l}.f{(i-1)*K+j} = convn(net.layers{l - 1}.f{i}, net.layers{l}.a{i}{j}, 'valid'); % a: weigth  f: c
+%                 net.layers{l}.f{(j-1)*inputmaps+i} = convn(net.layers{l - 1}.f{i}, net.layers{l}.a{i}{j}, 'valid'); % a: weigth  f: c  
             end
+            
             %  add bias, pass through nonlinearity
 %                 net.layers{l}.a{j} = sigm(z + net.layers{l}.b{j});
             % elm-lrf no bias no activation function
-            net.layers{l}.f{j} = z;
         end
         %  set number of input maps to this layers number of outputmaps
-        inputmaps = net.layers{l}.outputmaps;
+        inputmaps = K*inputmaps;
     elseif strcmp(net.layers{l}.type, 's')
         %  downsample
         for j = 1 : inputmaps

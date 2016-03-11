@@ -18,13 +18,13 @@ testing_time = cputime;
 %forward
 net = elmlrff(net, x);
 
-T = net.h * net.BETA; % (N, K(d-r+1)) * (K(d-r+1),nClasses)
+predT = net.h * net.BETA; % (N, K(d-r+1)) * (K(d-r+1),nClasses)
 
-[~, label0] = max(y);
-[~, label] = max(T,[],2);
+[~, label0] = max(y, [], 2);
+[~, label] = max(predT, [], 2);
 
-bad = find(label0' ~= label);
-er = numel(bad) / size(y, 2);  
+bad = find(label0 ~= label);
+er = numel(bad) / size(y, 1);  
 testing_time = cputime - testing_time;
 end
 
