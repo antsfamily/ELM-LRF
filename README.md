@@ -25,9 +25,9 @@ Based on the following framework:
 Setting for Experiment:
 
 - Dataset: NORB
-- kernelsize: 4*4
-- the number of convolutional feature maps: 3
-- pooling size: 3*3
+- kernelsize: $4\times 4$
+- the number of convolutional feature maps: $3$
+- pooling size: $3\times 3$
 
 
 ```matlab
