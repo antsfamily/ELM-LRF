@@ -18,6 +18,7 @@ Gmail：zhiliu.mind@gmail.com
 # Tips on coding
 
 Based on the following framework:
+
 ![coding framework](http://img.blog.csdn.net/20160311222311371)
 
 # Experimental Result
@@ -25,9 +26,9 @@ Based on the following framework:
 Setting for Experiment:
 
 - Dataset: NORB
-- kernelsize: $4\times 4$
-- the number of convolutional feature maps: $3$
-- pooling size: $3\times 3$
+- kernelsize: 4×4
+- the number of convolutional feature maps: 3
+- pooling size: 3×3
 
 
 ```matlab
