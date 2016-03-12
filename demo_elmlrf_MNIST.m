@@ -42,7 +42,7 @@ elmlrf.layers = {
 opts.batchsize = 500;
 opts.model = 'sequential';
 % setup
-elmlrf = elmlrfsetup(elmlrf, train_x);
+elmlrf = elmlrfsetup(elmlrf, train_x, opts.model);
 
 Cs = [0.001 0.01 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1];
 for C = Cs
@@ -55,7 +55,7 @@ for C = Cs
 
 	%% Test ELM-LRF
 	% disp testing error
-	[er, bad, testing_time] = elmlrftest(elmlrf, test_x, test_y);
+	[er, bad, testing_time] = elmlrftest(elmlrf, test_x, test_y, opts);
 
 	fprintf('\nTesting error: %f\nTesting Time:%fs\n', er, testing_time);
 
