@@ -35,9 +35,9 @@ clear X Y;
 rand('state',0)
 
 elmlrf.layers = {
-    struct('type', 'i') %input layer
-    struct('type', 'c', 'outputmaps', 3, 'kernelsize', 4) %convolution layer
-    struct('type', 's', 'scale', 3) %sub sampling layer
+	struct('type', 'i') %input layer
+	struct('type', 'c', 'outputmaps', 3, 'kernelsize', 4) %convolution layer
+	struct('type', 's', 'scale', 3) %sub sampling layer
 };
 
 
@@ -49,17 +49,17 @@ elmlrf = elmlrfsetup(elmlrf, train_x, opts.model);
 
 Cs = [0.001 0.01 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1];
 for C = Cs
-    opts.C = C;
-%% train ELM-LRF
-[elmlrf, er, training_time] = elmlrftrain(elmlrf, train_x, train_y, opts);
-% disp training error
+	opts.C = C;
+	%% train ELM-LRF
+	[elmlrf, er, training_time] = elmlrftrain(elmlrf, train_x, train_y, opts);
+	% disp training error
 
-fprintf('\nWith C = %f\n-----------------------------------------\nTraining error: %f\nTraining Time:%fs\n', opts.C, er, training_time);
+	fprintf('\nWith C = %f\n-----------------------------------------\nTraining error: %f\nTraining Time:%fs\n', opts.C, er, training_time);
 
-%% Test ELM-LRF
-% disp testing error
-[er, bad, testing_time] = elmlrftest(elmlrf, test_x, test_y, opts);
+	%% Test ELM-LRF
+	% disp testing error
+	[er, bad, testing_time] = elmlrftest(elmlrf, test_x, test_y, opts);
 
-fprintf('\nTesting error: %f\nTesting Time:%fs\n', er, testing_time);
+	fprintf('\nTesting error: %f\nTesting Time:%fs\n', er, testing_time);
 
 end

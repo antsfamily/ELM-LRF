@@ -19,7 +19,7 @@
 clear all;
 
 %% load MNIST data
-data = load('.\data\mnist_uint8.mat');
+data = load('./data/mnist_uint8.mat');
 train_x = double(reshape(data.train_x',28,28,60000))/255;
 train_y = data.train_y;
 train_x = train_x(:,:,1:10000);
@@ -33,30 +33,30 @@ test_y = data.test_y;
 rand('state',0)
 
 elmlrf.layers = {
-    struct('type', 'i') %input layer
-    struct('type', 'c', 'outputmaps', 10, 'kernelsize', 5) %convolution layer
-    struct('type', 's', 'scale', 3) %sub sampling layer
+	struct('type', 'i') %input layer
+	struct('type', 'c', 'outputmaps', 10, 'kernelsize', 5) %convolution layer
+	struct('type', 's', 'scale', 3) %sub sampling layer
 };
 
 
 opts.batchsize = 500;
-
+opts.model = 'sequential';
 % setup
 elmlrf = elmlrfsetup(elmlrf, train_x);
 
 Cs = [0.001 0.01 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1];
 for C = Cs
-    opts.C = C;
-%% train ELM-LRF
-[elmlrf, er, training_time] = elmlrftrain(elmlrf, train_x, train_y, opts);
-% disp training error
+	opts.C = C;
+	%% train ELM-LRF
+	[elmlrf, er, training_time] = elmlrftrain(elmlrf, train_x, train_y, opts);
+	% disp training error
 
-fprintf('\nWith C = %f\n-----------------------------------------\nTraining error: %f\nTraining Time:%fs\n', opts.C, er, training_time);
+	fprintf('\nWith C = %f\n-----------------------------------------\nTraining error: %f\nTraining Time:%fs\n', opts.C, er, training_time);
 
-%% Test ELM-LRF
-% disp testing error
-[er, bad, testing_time] = elmlrftest(elmlrf, test_x, test_y);
+	%% Test ELM-LRF
+	% disp testing error
+	[er, bad, testing_time] = elmlrftest(elmlrf, test_x, test_y);
 
-fprintf('\nTesting error: %f\nTesting Time:%fs\n', er, testing_time);
+	fprintf('\nTesting error: %f\nTesting Time:%fs\n', er, testing_time);
 
 end

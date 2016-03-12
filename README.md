@@ -10,16 +10,24 @@ Huang G, Bai Z, Kasun L, et al. Local Receptive Fields Based  Extreme Learning M
 
 # An Outline of the paper
 
-http://blog.csdn.net/enjoyyl/article/details/45724367
+Refer to my [blog](http://blog.csdn.net/enjoyyl/article/details/45724367) to see more information.
+
 
 Any bug report or suggestions are gladly welcome！Thanks！
 
-Gmail：zhiliu.mind@gmail.com
+Email：zhiliu.mind@gmail.com
 
-# Tips on coding
+# Usage
 
-Based on the following framework:
-![coding framework](http://img.blog.csdn.net/20160311222311371)
+Please see the demos for detail information.
+
+There are two main model for choosing, one is sequential(by setting `opts.model = sequential`):
+
+![Sequential model](http://img.blog.csdn.net/20160312174915472 "Sequential model")
+
+another one is parallel(by setting `opts.model = parallel`):
+![Parallel model](http://img.blog.csdn.net/20160312175341467 "Parallel model")
+
 
 # Experimental Result
 
