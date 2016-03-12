@@ -30,6 +30,9 @@ numBatches = a + b*1;
 % H = zeros(N, K*(d-r+1)^2);
 H = [];
 
+% model
+elmlrff = str2func(['@elmlrff_' opts.model]);
+
 for l = 1 : numBatches
     idx = (l-1)*batchSize+1 : min(l*batchSize, N);
     batch_x = x( :, :, idx, : );

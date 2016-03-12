@@ -1,3 +1,4 @@
+
 # ELM-LRF
 An Implementation of Local Receptive Fields Based Extreme Learning Machine
 
@@ -5,7 +6,7 @@ Strictly for academic use.
 
 Please kindly cite the paper "Local Receptive Fields based Extreme Learning Machine".
 
-Huang G, Bai Z, Kasun L, et al. Local Receptive Fields Based  Extreme Learning Machine[J]. Computational Intelligence Magazine IEEE,  2015, 10(2):18 - 29.
+Huang G, Bai Z, Kasun L, et al. Local Receptive Fields Based  Extreme Learning Machine[J]. Computational Intelligence Magazine dsa0987654321`IEEE,  2015, 10(2):18 - 29.
 
 # An Outline of the paper
 
@@ -18,7 +19,6 @@ Gmail：zhiliu.mind@gmail.com
 # Tips on coding
 
 Based on the following framework:
-
 ![coding framework](http://img.blog.csdn.net/20160311222311371)
 
 # Experimental Result
@@ -26,9 +26,9 @@ Based on the following framework:
 Setting for Experiment:
 
 - Dataset: NORB
-- kernelsize: 4×4
+- kernelsize: 4*4
 - the number of convolutional feature maps: 3
-- pooling size: 3×3
+- pooling size: 3*3
 
 
 ```matlab
@@ -147,3 +147,8 @@ The first 100 images of NORB training set, and some of their feature maps:
 - Pooling Feature Maps:
 
 ![Pooling Feature Maps](http://img.blog.csdn.net/20160311220640337)
+
+
+
+
+

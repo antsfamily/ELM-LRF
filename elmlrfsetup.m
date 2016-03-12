@@ -1,4 +1,4 @@
-function [ net ] = elmlrfsetup( net, x )
+function [ net ] = elmlrfsetup( net, x, model )
 %ELMLRFSETUP Setup ELM-LRF
 %   
 %==========================================================================
@@ -53,8 +53,14 @@ for l = 1 : numel(net.layers)   %  layer
         end
         
 %         inputmaps = net.layers{l}.outputmaps;
-        inputmaps = inputmaps*net.layers{l}.outputmaps;
-        
+        switch model
+            case 'sequential' % see './doc/model_sequential.png'
+                inputmaps = net.layers{l}.outputmaps;
+            case 'parallel'   % see './doc/model_parallel.png'
+                inputmaps = inputmaps*net.layers{l}.outputmaps;
+            otherwise
+                error('Not support for this model!');
+        end        
     end
 end
 
